@@ -29,7 +29,7 @@ public enum AdvancementEnum {
 	private final boolean showToast, announceChat;
 	private final AdvancementVisibility visibility;
 
-	private static AdvancementManager manager = CrazyAdvancements.getNewAdvancementManager();
+	public static AdvancementManager manager = CrazyAdvancements.getNewAdvancementManager();
 
 	private AdvancementEnum(Material icon, int required, String title, String description, AdvancementFrame frame,
 			String backgroundTexture, boolean showToast, boolean announceChat, AdvancementVisibility visibility) {
@@ -130,7 +130,7 @@ public enum AdvancementEnum {
 					new NameKey("CrazyAdvancementsExample", adv.name().toLowerCase()), display);
 			adv.advancement.setCriteria(adv.getRequired());
 			advList.add(adv.getAdvancement());
-			CrazyAdvancementsExample.addAdvList(adv.getAdvancement());
+			CrazyAdvancementsExample.advList.add(adv.getAdvancement());
 		}
 
 		manager.addAdvancement(advList.toArray(new Advancement[advList.size()]));

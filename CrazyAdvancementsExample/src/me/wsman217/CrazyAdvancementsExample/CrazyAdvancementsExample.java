@@ -29,8 +29,4 @@ public class CrazyAdvancementsExample extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerChatListener(this), this);
 	}
-	
-	public static void addAdvList(Advancement adv) {
-		advList.add(adv);
-	}
 }
