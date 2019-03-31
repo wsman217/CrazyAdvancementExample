@@ -5,9 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import eu.endercentral.crazy_advancements.Advancement;
 import me.wsman217.CrazyAdvancementsExample.CrazyAdvancementsExample;
-import me.wsman217.CrazyAdvancementsExample.enums.AdvancementEnum;
 
 public class PlayerJoinListener implements Listener {
 
@@ -20,9 +18,6 @@ public class PlayerJoinListener implements Listener {
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
-		AdvancementEnum.manager.loadProgress(p,
-				CrazyAdvancementsExample.advList.toArray(new Advancement[CrazyAdvancementsExample.advList.size()]));
-		System.out.println("test");
-		AdvancementEnum.manager.addPlayer(p);
+		plugin.addPlayers.addToManager(p);
 	}
 }

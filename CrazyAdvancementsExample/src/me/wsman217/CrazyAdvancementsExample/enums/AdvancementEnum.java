@@ -8,9 +8,7 @@ import eu.endercentral.crazy_advancements.Advancement;
 import eu.endercentral.crazy_advancements.AdvancementDisplay;
 import eu.endercentral.crazy_advancements.AdvancementDisplay.AdvancementFrame;
 import eu.endercentral.crazy_advancements.AdvancementVisibility;
-import eu.endercentral.crazy_advancements.CrazyAdvancements;
 import eu.endercentral.crazy_advancements.NameKey;
-import eu.endercentral.crazy_advancements.manager.AdvancementManager;
 import me.wsman217.CrazyAdvancementsExample.CrazyAdvancementsExample;
 
 public enum AdvancementEnum {
@@ -28,8 +26,6 @@ public enum AdvancementEnum {
 	private float x, y;
 	private final boolean showToast, announceChat;
 	private final AdvancementVisibility visibility;
-
-	public static AdvancementManager manager = CrazyAdvancements.getNewAdvancementManager();
 
 	private AdvancementEnum(Material icon, int required, String title, String description, AdvancementFrame frame,
 			String backgroundTexture, boolean showToast, boolean announceChat, AdvancementVisibility visibility) {
@@ -114,7 +110,7 @@ public enum AdvancementEnum {
 		return this.visibility;
 	}
 
-	public static void registerAdvancements() {
+	public static void registerAdvancements(CrazyAdvancementsExample plugin) {
 		ArrayList<Advancement> advList = new ArrayList<Advancement>();
 		for (AdvancementEnum adv : AdvancementEnum.values()) {
 
@@ -130,9 +126,9 @@ public enum AdvancementEnum {
 					new NameKey("CrazyAdvancementsExample", adv.name().toLowerCase()), display);
 			adv.advancement.setCriteria(adv.getRequired());
 			advList.add(adv.getAdvancement());
-			CrazyAdvancementsExample.advList.add(adv.getAdvancement());
+			plugin.advList.add(adv.getAdvancement());
 		}
 
-		manager.addAdvancement(advList.toArray(new Advancement[advList.size()]));
+		plugin.manager.addAdvancement(advList.toArray(new Advancement[advList.size()]));
 	}
 }
