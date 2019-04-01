@@ -29,6 +29,11 @@ public class PlayerChatListener implements Listener {
 		
 		if (manager.getCriteriaProgress(p, adv) < adv.getCriteria()) {
 			manager.setCriteriaProgress(p, adv, manager.getCriteriaProgress(p, adv) + 1);
+			System.out.println("REEEEEEEEEEEE");
+			manager.update(p);
+			return;
 		}
+		System.out.println("Granted");
+		manager.grantAdvancement(p, adv);
 	}
 }

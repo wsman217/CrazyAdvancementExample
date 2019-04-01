@@ -13,8 +13,10 @@ import me.wsman217.CrazyAdvancementsExample.CrazyAdvancementsExample;
 
 public enum AdvancementEnum {
 
-	ROOT(Material.ARMOR_STAND, 1, "Root Advancement", "Chat for the first time!", AdvancementFrame.TASK,
-			"textures/blocks/concrete_yellow.png", false, false, AdvancementVisibility.ALWAYS);
+	ROOT(Material.ARMOR_STAND, 2, "Root Advancement", "Chat for the first time!", AdvancementFrame.TASK,
+			"textures/blocks/concrete_yellow.png", true, true, AdvancementVisibility.ALWAYS),
+	CRAFT(AdvancementEnum.ROOT, Material.CRAFTING_TABLE, 2, "Crafty", "Craft something!", AdvancementFrame.TASK, 1, 2, true,
+			true, AdvancementVisibility.ALWAYS);
 
 	private Advancement advancement;
 	private AdvancementEnum parent;
@@ -22,7 +24,7 @@ public enum AdvancementEnum {
 	private final int required;
 	private String title, description;
 	private final AdvancementDisplay.AdvancementFrame frame;
-	private final String backgroundTexture;
+	private String backgroundTexture;
 	private float x, y;
 	private final boolean showToast, announceChat;
 	private final AdvancementVisibility visibility;
@@ -42,7 +44,7 @@ public enum AdvancementEnum {
 	}
 
 	private AdvancementEnum(AdvancementEnum parent, Material icon, int required, String title, String description,
-			AdvancementFrame frame, String backgroundTexture, float x, float y, boolean showToast, boolean announceChat,
+			AdvancementFrame frame, float x, float y, boolean showToast, boolean announceChat,
 			AdvancementVisibility visibility) {
 		this.parent = parent;
 		this.icon = icon;
@@ -50,7 +52,6 @@ public enum AdvancementEnum {
 		this.title = title;
 		this.description = description;
 		this.frame = frame;
-		this.backgroundTexture = backgroundTexture;
 		this.x = x;
 		this.y = y;
 		this.showToast = showToast;
@@ -130,5 +131,6 @@ public enum AdvancementEnum {
 		}
 
 		plugin.manager.addAdvancement(advList.toArray(new Advancement[advList.size()]));
+		System.out.println(plugin.manager.getAdvancements());
 	}
 }
